@@ -9,6 +9,7 @@ use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\DetailArtikelController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\TeamController;
 use App\Http\Controllers\Auth\EmailVerificationPromptController;
 
 
@@ -31,6 +32,7 @@ Route::get('/', function () {
 Route::get('/', [WelcomeController::class, 'index']);
 Route::get('/artikel/{id}', [DetailArtikelController::class, 'show'])->name('artikel.show');
 Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
+Route::get('/team', [TeamController::class, 'index']);
 
 
 
@@ -54,7 +56,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::post('/todos/{todo}/comments', [CommentController::class, 'store'])->name('comments.store');
-    Route::get('/dashboard', [TodoController::class, 'dashboard'])->name('dashboard');
+
 
     Route::get('/todo', [TodoController::class, 'index'])->name('todo.index');
     Route::post('/todo', [TodoController::class, 'store'])->name('todo.store');

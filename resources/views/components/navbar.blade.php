@@ -7,7 +7,7 @@
     <div class="mx-auto navbar-nav">
         <a class="nav-link {{ Request::is('/') ? 'active' : '' }}" href="{{ url('/') }}">Home</a>
         <a class="nav-link {{ Request::is('blog') ? 'active' : '' }}" href="{{ url('/blog') }}">Blog</a>
-        <a class="nav-link" href="#">Team</a>
+        <a class="nav-link {{ Request::is('team') ? 'active' : '' }}" href="{{ url('/team') }}">Team</a>
     </div>
 
     <div class="ml-auto navbar-right">
