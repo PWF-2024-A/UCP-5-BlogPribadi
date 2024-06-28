@@ -16,10 +16,10 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                     <x-nav-link :href="route('todo.index')" :active="request()->routeIs('todo.*')">
-                        {{ __('Todo') }}
+                        {{ __('Artkel') }}
                     </x-nav-link>
                     <x-nav-link :href="route('category.index')" :active="request()->routeIs('category.*')">
-                        {{ __('Category') }}
+                        {{ __('Kategori Artikel') }}
                     </x-nav-link>
                     @can('admin')
                     <x-nav-link :href="route('user.index')" :active="request()->routeIs('user.index')">

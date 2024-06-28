@@ -16,9 +16,73 @@
         /* Base styles */
         body {
             font-family: 'figtree', sans-serif;
-            background-color: white; /* Light gray background */
+            background-color: white; /* Light mode background */
+            transition: background-color 0.3s ease;
         }
 
+        body.dark-mode {
+            background-color: #1a202c; /* Dark mode background */
+        }
+
+        .dark-mode .comments-section{
+            color: white
+        }
+
+        /* Dark mode styles for elements */
+        body.dark-mode .navbar.navbar-scrolled {
+            background-color: #1a202c;
+            border-bottom: 1px solid #333333;
+        }
+
+        body.dark-mode .navbar-brand img {
+            filter: brightness(0) invert(1);
+        }
+
+        body.dark-mode .title-brand,
+        body.dark-mode .navbar-nav .nav-link,
+        body.dark-mode .content h1,
+        body.dark-mode .comment .author,
+        body.dark-mode .back-button a {
+            color: #e0e0e0; /* Light gray text in dark mode */
+        }
+
+        body.dark-mode .container {
+            background-color: #2d3748; /* Dark mode card background */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        body.dark-mode .content p,
+        body.dark-mode .comment .content,
+        body.dark-mode .category,
+        body.dark-mode .comment .timestamp {
+            color: #a0a0a0; /* Medium gray text in dark mode */
+        }
+
+        body.dark-mode .comment-form textarea {
+            background-color: #1a202c;
+            color: #e0e0e0;
+            border: 1px solid #555555;
+        }
+
+        body.dark-mode .comment-form button {
+            background-color: #0056b3;
+        }
+
+        body.dark-mode .comment-form button:hover {
+            background-color: #003e7e;
+        }
+
+        body.dark-mode .back-button a {
+            background-color: #333333;
+            color: #ffffff;
+            border: none;
+        }
+
+        body.dark-mode .back-button a:hover {
+            background-color: #555555;
+        }
+
+        /* Additional base styles */
         .rounded-circle {
             width: 30px;
             height: 30px;
@@ -244,5 +308,60 @@
             }
         });
     </script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const darkModeToggle = document.getElementById('darkModeToggle');
+
+        // Cek status mode pada localStorage saat halaman dimuat
+        if (localStorage.getItem('mode') === 'dark') {
+            enableDarkMode(); // Aktifkan dark mode tanpa transisi saat halaman dimuat
+        }
+
+        // Event listener untuk toggle dark mode
+        darkModeToggle.addEventListener('click', function() {
+            if (localStorage.getItem('mode') !== 'dark') {
+                enableDarkMode(true); // Memiliki transisi saat diaktifkan
+                localStorage.setItem('mode', 'dark'); // Simpan mode ke localStorage
+            } else {
+                disableDarkMode(true); // Memiliki transisi saat dinonaktifkan
+                localStorage.setItem('mode', 'light'); // Simpan mode ke localStorage
+            }
+        });
+
+        // Fungsi untuk mengaktifkan dark mode
+        function enableDarkMode(withTransition = false) {
+            if (withTransition) {
+                document.body.classList.add('transition'); // Tambah class untuk transisi
+                setTimeout(() => {
+                    document.body.classList.add('dark-mode'); // Aktifkan dark mode setelah timeout
+                }, 300); // Delay untuk memungkinkan transisi CSS
+            } else {
+                document.body.classList.add('dark-mode'); // Aktifkan dark mode tanpa transisi
+            }
+            darkModeToggle.innerHTML = '<i class="fas fa-sun"></i> Light Mode'; // Ubah teks tombol
+        }
+
+        // Fungsi untuk menonaktifkan dark mode
+        function disableDarkMode(withTransition = false) {
+            if (withTransition) {
+                document.body.classList.add('transition'); // Tambah class untuk transisi
+                setTimeout(() => {
+                    document.body.classList.remove('dark-mode'); // Nonaktifkan dark mode setelah timeout
+                }, 300); // Delay untuk memungkinkan transisi CSS
+            } else {
+                document.body.classList.remove('dark-mode'); // Nonaktifkan dark mode tanpa transisi
+            }
+            darkModeToggle.innerHTML = '<i class="fas fa-moon"></i> Dark Mode'; // Ubah teks tombol
+        }
+
+        // Event listener untuk menghapus class transisi setelah transisi selesai
+        document.body.addEventListener('transitionend', function(event) {
+            if (event.propertyName === 'background-color' || event.propertyName === 'color') {
+                document.body.classList.remove('transition');
+            }
+        });
+    });
+</script>
 </body>
 </html>

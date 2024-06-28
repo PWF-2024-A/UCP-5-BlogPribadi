@@ -13,13 +13,13 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 
-
     <!-- Styles -->
     <style>
         /* Base styles */
         body {
             font-family: 'figtree', sans-serif;
             background-color: #f3f4f6; /* Light gray background */
+            transition: background-color 0.3s, color 0.3s; /* Smooth transition */
         }
 
         .rounded-circle {
@@ -36,6 +36,7 @@
         .rounded-circle i {
             color: white; /* Sesuaikan dengan warna ikon */
         }
+
         .navbar {
             background-color: transparent; /* Transparent navbar */
             padding: 15px 20px;
@@ -44,7 +45,9 @@
             position: fixed;
             width: 100%;
             z-index: 1000;
+            transition: background-color 0.3s ease;
         }
+
 
         .navbar.navbar-scrolled {
             background-color: #ffffff; /* White background on scroll */
@@ -59,6 +62,12 @@
         .title-brand {
             font-size: 20px;
             color: #333333; /* Dark gray text */
+        }
+
+        .nav-link.active {
+            color: #4B6BFB; /* Atur warna yang diinginkan untuk link aktif */
+            font-weight: bold; /* Buat teks lebih tebal */
+            text-decoration: underline;
         }
 
         .navbar-nav {
@@ -87,39 +96,48 @@
             margin-left: 1rem;
         }
 
-
-    .dropdown-item {
-        padding: 0.75rem 1.5rem;
-        color: #333;
-        font-size: 14px;
+        .dropdown-toggle{
+            background-color: transparent;
+            color: #212529;
+            border: none;
         }
 
-    .dropdown-item:hover,
-    .dropdown-item:focus {
-        background-color: #f8f9fa;
-        color: #4B6BFB;
+        .dark-mode .dropdown-toggle{
+            color: white;
         }
 
-    .dropdown-menu {
-        border: none;
-        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
-        border-radius: 5px;
+        .dropdown-item {
+            padding: 0.75rem 1.5rem;
+            color: #333;
+            font-size: 14px;
         }
 
-    .dropdown-menu::before {
-        content: '';
-        position: absolute;
-        top: -5px;
-        left: calc(50% - 5px);
-        border-width: 0 5px 5px 5px;
-        border-style: solid;
-        border-color: transparent transparent white transparent;
+        .dropdown-item:hover,
+        .dropdown-item:focus {
+            background-color: #f8f9fa;
+            color: #4B6BFB;
+        }
+
+        .dropdown-menu {
+            border: none;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+
+        .dropdown-menu::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: calc(50% - 5px);
+            border-width: 0 5px 5px 5px;
+            border-style: solid;
+            border-color: transparent transparent white transparent;
         }
         .container {
             max-width: 899px;
             margin: 0 auto;
             padding: 20px;
-            padding-top: 100px
+            padding-top: 100px;
         }
 
         .card {
@@ -185,18 +203,11 @@
             text-align: center;
         }
 
-        /* Dark mode */
-        .dark-mode {
-            background-color: #1a202c; /* Dark gray background */
-            color: #ffffff; /* White text */
-        }
-
         /* Selection color */
         ::selection {
             background-color: #f56565; /* Red selection background */
             color: #ffffff; /* White text */
         }
-
 
         .jumbotron {
             position: relative;
@@ -255,7 +266,7 @@
             font-weight: bold;
         }
 
-        .latest-post{
+        .latest-post {
             font-size: 23px;
             font-weight: bold;
         }
@@ -266,42 +277,132 @@
         }
 
         .alert {
-        padding: 20px;
-        background-color: #f44336; /* Red */
-        color: white;
-        margin-bottom: 15px;
-    }
+            padding: 20px;
+            background-color: #f44336; /* Red */
+            color: white;
+            margin-bottom: 15px;
+        }
 
-    .alert-danger {
-        background-color: #f44336; /* Red */
-    }
+        .alert-danger {
+            background-color: #f44336; /* Red */
+        }
 
-    .closebtn {
-        margin-left: 15px;
-        color: white;
-        font-weight: bold;
-        float: right;
-        font-size: 22px;
-        line-height: 20px;
-        cursor: pointer;
-        transition: 0.3s;
-    }
+        .closebtn {
+            margin-left: 15px;
+            color: white;
+            font-weight: bold;
+            float: right;
+            font-size: 22px;
+            line-height: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
 
-    .closebtn:hover {
-        color: black;
-    }
+        .closebtn:hover {
+            color: black;
+        }
 
-    .tombol-post{
-        padding: 10px;
-        width: 20%;
-        font-weight: 500;
-        border:2px solid #e3e3e3;
-    }
+        .tombol-post {
+            padding: 10px;
+            width: 20%;
+            font-weight: 500;
+            border: 2px solid #e3e3e3;
+        }
+
+
+        /* Dark mode styles */
+        .dark-mode {
+            background-color: #1a202c; /* Dark gray background */
+            color: #ffffff; /* White text */
+        }
+
+        .dark-mode .navbar.navbar-scrolled {
+            background-color: #1a202c;
+            border-bottom: 1px solid #4a5568; /* Darker border bottom */
+        }
+
+        .dark-mode .card {
+            background-color: #2d3748; /* Darker card background */
+            color: #ffffff; /* White text */
+        }
+
+        .dark-mode .jumbotron {
+            background-color: #2d3748; /* Darker jumbotron background */
+        }
+
+        .dark-mode .jumbotron .overlay {
+            background: #4a5568; /* Darker overlay background */
+        }
+
+        .dark-mode .jumbotron .overlay .category {
+            background-color: #718096; /* Darker category background */
+        }
+
+        .dark-mode .category {
+            background-color: #4a5568; /* Darker category background */
+        }
+
+        .dark-mode .tombol-post {
+            border: 2px solid #4a5568; /* Darker button border */
+        }
+
+        .navbar.navbar-scrolled.dark-mode {
+            background-color: #2d3748; /* Darker background for dark mode */
+            border-bottom: 1px solid #4a5568; /* Darker border bottom for dark mode */
+        }
+
+        .dark-mode .navbar {
+    background-color: transparent; /* Darker background for dark mode */
+    color: #ffffff; /* White text color */
+}
+
+        .dark-mode .navbar .navbar-brand {
+            color: #ffffff; /* White text color for brand */
+        }
+
+        .dark-mode .navbar-brand img {
+            filter: invert(1); /* Invert image colors */
+        }
+
+        .dark-mode .title-brand {
+            color: #ffffff; /* White text */
+        }
+
+.dark-mode .navbar .nav-link {
+    color: #ffffff; /* White text color for links */
+}
+
+.dark-mode .navbar .nav-link:hover {
+    color: #cbd5e0; /* Lighter text color on hover */
+}
+
+.dark-mode .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3e%3cpath stroke='rgba(255, 255, 255, 0.95)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+.dark-mode .card h3,
+.dark-mode .card p,
+.dark-mode .tombol-post {
+    color: #ffffff; /* White text color for card heading, paragraph, and button */
+}
+
+.dark-mode .jumbotron .overlay {
+    color: #ffffff; /* White text color for jumbotron overlay */
+}
+
+.dark-mode .btn-outline-secondary {
+    color: #ffffff; /* Teks warna putih */
+    border-color: #ffffff; /* Warna border putih */
+}
+
+.dark-mode .btn-outline-secondary:hover {
+    color: #212529; /* Teks warna hitam */
+    background-color: #ffffff; /* Latar belakang putih */
+}
 
     </style>
 </head>
-<body class="antialiased bg-white dark:bg-slate-800" style="background-color: white;  ">
-
+<body class="antialiased">
     @if (session('error'))
     <div class="alert alert-danger alert-dismissible fade show" role="alert" id="error-alert">
         {{ session('error') }}
@@ -309,10 +410,11 @@
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
-@endif
+    @endif
 
     <div class="relative min-h-screen bg-gray-100 bg-center sm:flex sm:justify-center sm:items-center bg-dots-darker dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white">
         @include('components.navbar')
+
         <div class="container">
             <!-- Jumbotron -->
             @if($todos->count() > 0)
@@ -371,19 +473,61 @@
                 $('#mainNavbar').removeClass('navbar-scrolled');
             }
         });
-    </script>
 
-    <script>
+        // Dark mode toggle
+        document.getElementById('darkModeToggle').addEventListener('click', function() {
+            document.body.classList.toggle('dark-mode');
+            if (document.body.classList.contains('dark-mode')) {
+                this.innerHTML = '<i class="fas fa-sun"></i> Light Mode';
+            } else {
+                this.innerHTML = '<i class="fas fa-moon"></i> Dark Mode';
+            }
+        });
+
         $(document).ready(function () {
             setTimeout(function() {
                 $("#error-alert").alert('close');
             }, 2000);
         });
-    </script>
 
-    <script>
+
         // Initialize Bootstrap dropdown
         $('.dropdown-toggle').dropdown();
     </script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const darkModeToggle = document.getElementById('darkModeToggle');
+
+        // Mengecek status mode pada localStorage saat halaman dimuat
+        if (localStorage.getItem('mode') === 'dark') {
+            enableDarkMode();
+        }
+
+        // Menambahkan event listener untuk toggle dark mode
+        darkModeToggle.addEventListener('click', function() {
+            if (localStorage.getItem('mode') !== 'dark') {
+                enableDarkMode();
+                localStorage.setItem('mode', 'dark'); // Menyimpan mode ke localStorage
+            } else {
+                disableDarkMode();
+                localStorage.setItem('mode', 'light'); // Menyimpan mode ke localStorage
+            }
+        });
+
+        // Fungsi untuk mengaktifkan dark mode
+        function enableDarkMode() {
+            document.body.classList.add('dark-mode'); // Menambahkan class dark-mode ke body
+            darkModeToggle.innerHTML = '<i class="fas fa-sun"></i> Light Mode'; // Mengubah teks tombol
+        }
+
+        // Fungsi untuk menonaktifkan dark mode
+        function disableDarkMode() {
+            document.body.classList.remove('dark-mode'); // Menghapus class dark-mode dari body
+            darkModeToggle.innerHTML = '<i class="fas fa-moon"></i> Dark Mode'; // Mengubah teks tombol
+        }
+    });
+</script>
+
 </body>
 </html>

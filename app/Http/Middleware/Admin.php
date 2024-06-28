@@ -20,6 +20,6 @@ class Admin
         }
 
         // Redirect to home or any other page with an error message
-        return redirect('/')->with('error', 'You do not have access to the dashboard.');
+        return redirect('/dashboard')->with('error', 'You do not have access to the dashboard.');
     }
 }

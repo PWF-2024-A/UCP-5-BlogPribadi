@@ -9,6 +9,8 @@ use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\DetailArtikelController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\Auth\EmailVerificationPromptController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -44,12 +46,14 @@ Route::delete('/comment/{comment}', [CommentController::class, 'destroy'])->name
 
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::post('/todos/{todo}/comments', [CommentController::class, 'store'])->name('comments.store');
+    Route::get('verify-email', [EmailVerificationPromptController::class, '__invoke'])
+                ->name('verification.notice');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+    Route::post('/todos/{todo}/comments', [CommentController::class, 'store'])->name('comments.store');
     Route::get('/dashboard', [TodoController::class, 'dashboard'])->name('dashboard');
 
     Route::get('/todo', [TodoController::class, 'index'])->name('todo.index');
@@ -74,5 +78,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::patch('/user/{user}/removeadmin', [UserController::class, 'removeadmin'])->name('user.removeadmin');
     });
 });
+
+
 
 require __DIR__ . '/auth.php';
