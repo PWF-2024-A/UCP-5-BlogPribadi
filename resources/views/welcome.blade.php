@@ -307,6 +307,11 @@
             width: 20%;
             font-weight: 500;
             border: 2px solid #e3e3e3;
+            transition: transform 0.3s ease;
+        }
+
+        .tombol-post:hover{
+            transform: scale(1.05)
         }
 
 

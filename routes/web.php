@@ -11,6 +11,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\Auth\EmailVerificationPromptController;
+use App\Http\Controllers\Auth\SocialiteController;
 
 
 /*
@@ -33,6 +34,12 @@ Route::get('/', [WelcomeController::class, 'index']);
 Route::get('/artikel/{id}', [DetailArtikelController::class, 'show'])->name('artikel.show');
 Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
 Route::get('/team', [TeamController::class, 'index']);
+
+
+
+
+Route::get('/login/github', [SocialiteController::class, 'redirectToProvider'])->name('login.github');
+Route::get('/login/github/callback', [SocialiteController::class, 'handleProviderCallback']);
 
 
 

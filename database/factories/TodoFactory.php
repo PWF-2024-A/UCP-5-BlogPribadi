@@ -24,7 +24,7 @@ class TodoFactory extends Factory
             // 'category_id' => rand(1, 100),
             'category_id' => Category::inRandomOrder()->first()->id,
             'title' => ucwords(fake()->sentence()),
-            'is_complete' => rand(0, 1),
+            'description' => ucwords(fake()->sentence()),
             'image_path' => fake()->imageUrl,
         ];
     }

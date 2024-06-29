@@ -16,7 +16,7 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                     <x-nav-link :href="route('todo.index')" :active="request()->routeIs('todo.*')">
-                        {{ __('Artkel') }}
+                        {{ __('Artikel') }}
                     </x-nav-link>
                     <x-nav-link :href="route('category.index')" :active="request()->routeIs('category.*')">
                         {{ __('Kategori Artikel') }}
@@ -45,8 +45,8 @@
                     </x-slot>
 
                     <x-slot name="content">
-                        <x-dropdown-link :href="route('profile.edit')">
-                            {{ __('Profile') }}
+                        <x-dropdown-link :href="url('/')">
+                            {{ __('Back to Home') }}
                         </x-dropdown-link>
 
                         <!-- Authentication -->
@@ -82,7 +82,7 @@
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('todo.index')" :active="request()->routeIs('todo.index')">
-                {{ __('Todo') }}
+                {{ __('Artikel') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('category.index')" :active="request()->routeIs('category.index')">
                 {{ __('Category') }}

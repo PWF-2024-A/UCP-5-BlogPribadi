@@ -300,7 +300,7 @@
 @include('components.navbar')
 
 <div class="container">
-    <h1 class="text-center latest-post">Blog</h1>
+    <h1 class="mb-4 text-center latest-post">Blog</h1>
 
     <form action="{{ route('blog.index') }}" method="GET" id="filterForm" class="mb-4">
         <div class="form-row">

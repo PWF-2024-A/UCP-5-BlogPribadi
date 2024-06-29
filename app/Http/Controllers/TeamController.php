@@ -11,21 +11,27 @@ class TeamController extends Controller
         // Data developer bisa diambil dari database atau hardcoded seperti berikut
         $team = [
             [
-                'name' => 'John Doe',
-                'role' => 'Frontend Developer',
-                'image' => 'path/to/image1.jpg',
-                'description' => 'Experienced in HTML, CSS, and JavaScript.'
+                'name' => 'Raynanda Aqiyas P',
+                'role' => '20210140024',
+                'image' => 'https://i.pinimg.com/736x/55/dd/5c/55dd5ceccf65060d66668d696c347f3f.jpg',
+                'description' => 'Full Stack Dev'
             ],
             [
-                'name' => 'Jane Smith',
-                'role' => 'Backend Developer',
-                'image' => 'path/to/image2.jpg',
-                'description' => 'Specialist in PHP, Laravel, and MySQL.'
+                'name' => 'Muhammad Fadila',
+                'role' => '20210140119',
+                'image' => 'https://i.pinimg.com/564x/1c/2e/61/1c2e61c2ebbc21992a6fa804db47c764.jpg',
+                'description' => '-'
             ],
             [
-                'name' => 'Mike Johnson',
+                'name' => 'Ammar Fatwa',
                 'role' => 'Full Stack Developer',
-                'image' => 'path/to/image3.jpg',
+                'image' => 'https://i.pinimg.com/564x/aa/1a/84/aa1a84e3affb36db315d5045abeead61.jpg',
+                'description' => 'Proficient in both frontend and backend technologies.'
+            ],
+            [
+                'name' => 'Dzaky Naufal',
+                'role' => 'Full Stack Developer',
+                'image' => 'https://i.pinimg.com/564x/34/d7/9a/34d79a65276e70c06385a03841d51b7a.jpg',
                 'description' => 'Proficient in both frontend and backend technologies.'
             ],
         ];
